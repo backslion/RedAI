@@ -324,12 +324,15 @@ func TestExtractBinaryFindsNestedEntry(t *testing.T) {
 		t.Fatal(err)
 	}
 	zw := zip.NewWriter(f)
-	// 真实发布包的结构：pojun-<版本>-<os>-<arch>/pojun，外加若干干扰文件。
+	// 真实发布包的结构：<二进制名>-<版本>-<os>-<arch>/<二进制名>，外加若干干扰文件。
+	// 目录名与包内二进制名都从 BinaryName 派生：改名后这条用例要跟着变，
+	// 而不是写死字面量——否则解析逻辑一改名字，用例就假红。
+	pkgDir := BinaryName + "-0.3.8-linux-amd64"
 	for name, body := range map[string]string{
-		"pojun-0.3.8-linux-amd64/README.md":           "readme",
-		"pojun-0.3.8-linux-amd64/skills/a.md":         "skill",
-		"pojun-0.3.8-linux-amd64/pojun":               "#!/bin/sh\nexit 0\n",
-		"pojun-0.3.8-linux-amd64/config.example.json": "{}",
+		pkgDir + "/README.md":           "readme",
+		pkgDir + "/skills/a.md":         "skill",
+		pkgDir + "/" + BinaryName:       "#!/bin/sh\nexit 0\n",
+		pkgDir + "/config.example.json": "{}",
 	} {
 		w, err := zw.Create(name)
 		if err != nil {
@@ -349,7 +352,7 @@ func TestExtractBinaryFindsNestedEntry(t *testing.T) {
 		t.Fatalf("extractBinary: %v", err)
 	}
 	if got := readAll(t, dst); !strings.Contains(got, "exit 0") {
-		t.Errorf("解压出来的不是 pojun 可执行文件: %q", got)
+		t.Errorf("解压出来的不是 %s 可执行文件: %q", BinaryName, got)
 	}
 	info, err := os.Stat(dst)
 	if err != nil {
