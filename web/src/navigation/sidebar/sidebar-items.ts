@@ -1,0 +1,115 @@
+import {
+  Activity,
+  Ban,
+  BellRing,
+  BookOpen,
+  Bot,
+  Brain,
+  Bug,
+  ClipboardList,
+  FolderOpen,
+  FolderSync,
+  KeyRound,
+  LayoutDashboard,
+  type LucideIcon,
+  MessageSquare,
+  MonitorCog,
+  Network,
+  PackageOpen,
+  Plug,
+  Radio,
+  RadioTower,
+  ScrollText,
+  Settings2,
+  ShieldAlert,
+  ShieldCheck,
+  Sparkles,
+  Target,
+  Terminal,
+  Waypoints,
+  Wrench,
+} from "lucide-react";
+
+export type NavBadge = "new" | "soon";
+
+export interface NavSubItem {
+  id: string;
+  title: string;
+  url: string;
+  icon?: LucideIcon;
+  badge?: NavBadge;
+  disabled?: boolean;
+  newTab?: boolean;
+}
+
+interface NavItemBase {
+  id: string;
+  title: string;
+  icon?: LucideIcon;
+  badge?: NavBadge;
+  disabled?: boolean;
+  newTab?: boolean;
+}
+
+export interface NavMainLinkItem extends NavItemBase {
+  url: string;
+  subItems?: never;
+}
+
+export interface NavMainParentItem extends NavItemBase {
+  subItems: NavSubItem[];
+}
+
+export type NavMainItem = NavMainLinkItem | NavMainParentItem;
+
+export interface NavGroup {
+  id: number;
+  label?: string;
+  items: NavMainItem[];
+}
+
+export const sidebarItems: NavGroup[] = [
+  {
+    id: 1,
+    label: "功能",
+    items: [
+      { id: "dashboard", title: "仪表盘", url: "/dashboard", icon: LayoutDashboard },
+      { id: "chat", title: "对话", url: "/chat", icon: MessageSquare },
+      { id: "tasks", title: "任务", url: "/function/tasks", icon: Target },
+      { id: "findings", title: "发现", url: "/function/findings", icon: Bug },
+      { id: "traffic", title: "流量", url: "/function/traffic", icon: Activity },
+      { id: "commands", title: "工具执行", url: "/function/commands", icon: Terminal },
+      { id: "llm-records", title: "LLM 录制", url: "/function/llm-records", icon: Radio },
+      { id: "assets", title: "资产", url: "/function/assets", icon: Network },
+      { id: "credentials", title: "凭据", url: "/function/credentials", icon: KeyRound },
+      { id: "knowledge", title: "知识库", url: "/function/knowledge", icon: BookOpen },
+      { id: "stage", title: "受管暂存", url: "/function/stage", icon: PackageOpen },
+      { id: "pivot", title: "内网穿透", url: "/function/pivot", icon: Waypoints },
+      { id: "webshell", title: "WebShell 通道", url: "/function/webshell", icon: Bug },
+      { id: "webshell-tunnel", title: "WebShell 隧道", url: "/function/webshell-tunnel", icon: Waypoints },
+      { id: "sync", title: "资产同步", url: "/function/sync", icon: FolderSync },
+      { id: "workspace", title: "工作空间", url: "/function/workspace", icon: FolderOpen },
+    ],
+  },
+  {
+    id: 2,
+    label: "系统",
+    items: [
+      { id: "llm", title: "LLM", url: "/system/llm", icon: Brain },
+      { id: "agents", title: "Agent", url: "/system/agents", icon: Bot },
+      { id: "mcp", title: "MCP", url: "/system/mcp", icon: Plug },
+      { id: "skills", title: "Skill", url: "/system/skills", icon: Sparkles },
+      { id: "tools", title: "工具", url: "/system/tools", icon: Wrench },
+      { id: "notify", title: "通知推送", url: "/system/notify", icon: BellRing },
+      { id: "vulnintel", title: "漏洞情报", url: "/system/vulnintel", icon: ShieldCheck },
+      { id: "proxypool", title: "代理池", url: "/system/proxypool", icon: Network },
+      { id: "hostenv", title: "宿主环境", url: "/system/hostenv", icon: MonitorCog },
+      { id: "c2", title: "监听器 / C2", url: "/system/c2", icon: RadioTower },
+      { id: "intercept", title: "拦截规则", url: "/system/intercept", icon: ShieldAlert },
+      { id: "asset-intercept", title: "资产拦截", url: "/system/intercept/assets", icon: Ban },
+      { id: "approvals", title: "拦截审批", url: "/system/intercept/approvals", icon: ClipboardList },
+      { id: "logs", title: "日志", url: "/system/logs", icon: ScrollText },
+      { id: "settings", title: "系统配置", url: "/system/settings", icon: Settings2 },
+    ],
+  },
+];
