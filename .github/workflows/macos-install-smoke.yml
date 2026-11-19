@@ -11,6 +11,10 @@
 #
 # runner 用 macos-15（ARM）：macos-14 已被 GitHub 淘汰（label 不可用）。
 # 版本默认冒烟当前最新 Release（用 -y 非交互模式）。
+#
+# 排障提示：macos runner 偶发在引导阶段就挂掉，表现为 job 结论 cancelled、
+# steps 列表为空、job 日志取回来是 BlobNotFound——这不是脚本失败，直接重跑即可。
+# 真正的脚本失败一定有 steps 明细和日志正文。
 
 name: macos-install-smoke
 
