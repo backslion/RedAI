@@ -729,7 +729,7 @@ cd web && npx tsc --noEmit && NEXT_EXPORT=1 npx next build
 项目结构：
 
 ```
-cmd/            程序入口（pojun 主服务 / pojun-hostd 特权助手）
+cmd/            程序入口（redai 主服务 / redai-hostd 特权助手 / redai-maint 维护工具）
 agent/          多 Agent 层：planner / worker / mainagent / 领域工具（tools_*.go）
 db/             PostgreSQL 唯一存储：schema.sql（幂等迁移）+ 全部表 Store
 server/         HTTP 服务：路由 / 引擎调度 / Manager / 会话 / 报告 / 更新
@@ -751,6 +751,28 @@ skills/         内置 skill：vuln-hunting / redteam-ops / api-recon / …
 web/            Next.js 前端（静态导出后 go:embed 内嵌）
 docs/           设计文档 / 部署手册 / 能力对照
 ```
+
+### 发版
+
+版本号只由 tag 决定，不需要改代码里的版本常量。
+
+```bash
+# 1. 在 CHANGELOG.md 顶部加一段（CI 找不到这段会拒绝发布）
+#    ## [0.4.85] - 2026-11-20
+# 2. 提交
+git commit -am "feat: ..."
+# 3. 一键发版：校验 CHANGELOG / 工作区 / tag 后，打 tag 并推送
+./scripts/release.sh 0.4.85
+```
+
+推送 tag 即触发 `.github/workflows/release.yml`：交叉编译 linux/darwin ×
+amd64/arm64、生成 `SHA256SUMS`、创建 GitHub Release、推送镜像
+`ghcr.io/backslion/redai`。Release 说明取自 CHANGELOG 对应版本段；安装命令与镜像
+地址按**实际仓库**注入（`${{ github.repository }}`），fork 到别的账号无需改任何文件。
+
+自更新源同理，由 `build.sh` 的 `POJUN_REPO` 在构建期注入。手工构建时没传就用默认值
+`backslion/RedAI`——二开成别的仓库时**必须**传，否则你的产物会去上游拉更新，
+且因为上游包的 SHA256 校验能过，替换过程不会报任何错。
 
 欢迎 Issue 与 PR：修 bug / 补文档直接提；新功能建议先开 Issue 讨论场景与边界。
 
