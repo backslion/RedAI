@@ -2,9 +2,9 @@
 
 <img src="screenshots/redai-logo.png" width="96" alt="RedAI"/>
 
-# REDAI RedAI
+# REDAI
 
-**AI 自主渗透测试平台 · 从一句话目标到可交付漏洞报告**
+**AI 自主渗透测试平台,基于Pojun项目的二次开发 · 从一句话目标到可交付漏洞报告**
 
 > REDAI，北斗第七星，主杀伐、主变局。<br/>
 > 找到防线的破口，并把破口证明给你看。
