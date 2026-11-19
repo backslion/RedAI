@@ -774,6 +774,10 @@ JSON
 </plist>
 PLIST
   launchctl bootout "gui/$(id -u)/$PLIST_LABEL" 2>/dev/null || true
+  # 老版本用 com.pojun 注册同名服务。label 改名后旧服务不会被上面那行清掉，
+  # 它会继续占着 8787，导致新版 bootstrap 成功但进程起不来、被 KeepAlive 反复拉起。
+  launchctl bootout "gui/$(id -u)/com.pojun" 2>/dev/null || true
+  rm -f "$PLIST_DIR/com.pojun.plist" 2>/dev/null || true
   launchctl bootstrap "gui/$(id -u)" "$PLIST" || die "launchd 注册失败（$PLIST）"
   ok "launchd 服务已注册（开机自启，崩溃自动拉起）"
 
@@ -1399,7 +1403,8 @@ for _n in $(seq 1 30); do
     if [ "$MODE" = "binary" ]; then
       if [ "$IS_MAC" = "1" ]; then
         tail -5 "$INSTALL_DIR/redai.launchd.log" 2>/dev/null || true
-        info "服务管理：launchctl kickstart -k gui/$(id -u)/com.pojun 重启 | launchctl bootout gui/$(id -u)/com.pojun 停止 | tail -f $INSTALL_DIR/redai.launchd.log 看日志"
+        # 这里不能用 $PLIST_LABEL：它是 install_launchd 里的 local，主流程引用会在 set -u 下报 unbound
+        info "服务管理：launchctl kickstart -k gui/$(id -u)/com.redai 重启 | launchctl bootout gui/$(id -u)/com.redai 停止 | tail -f $INSTALL_DIR/redai.launchd.log 看日志"
       else
         systemctl --no-pager status "$SERVICE" | head -5
       fi

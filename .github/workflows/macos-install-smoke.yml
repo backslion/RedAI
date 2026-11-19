@@ -70,12 +70,13 @@ jobs:
       - name: Verify service (launchd / health / database)
         run: |
           set -e
-          # launchd 服务在跑
-          launchctl print "gui/$(id -u)/com.pojun" | grep -q "state = running" \
-            || launchctl print "gui/$(id -u)/com.pojun" | grep -E "pid = [0-9]+"
+          # launchd 服务在跑。label 由 install.sh 的 PLIST_LABEL 决定（改名后为 com.redai），
+          # 这里必须跟着走，否则 health 明明 200 也会因为查不到旧 label 而红。
+          launchctl print "gui/$(id -u)/com.redai" | grep -q "state = running" \
+            || launchctl print "gui/$(id -u)/com.redai" | grep -E "pid = [0-9]+"
           # 健康检查
           code=$(curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:8787/api/health)
-          [ "$code" = "200" ] || { echo "health=$code"; tail -50 ~/pojun/pojun.launchd.log; exit 1; }
+          [ "$code" = "200" ] || { echo "health=$code"; tail -50 ~/pojun/redai.launchd.log; exit 1; }
           echo "health 200 OK"
           # 数据库角色与库（psql 默认连用户同名库，runner 用户 runner 没有同名库）
           PGBIN="$(brew --prefix)/opt/postgresql@16/bin"
@@ -98,8 +99,8 @@ jobs:
 
       - name: Verify KeepAlive (kill process, launchd revives)
         run: |
-          # KeepAlive 语义验证：杀掉 pojun 进程，launchd + start.sh 应把它拉回来
-          pkill -x pojun || true
+          # KeepAlive 语义验证：杀掉 redai 进程，launchd + start.sh 应把它拉回来
+          pkill -x redai || true
           sleep 15
           code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 5 http://127.0.0.1:8787/api/health)
           [ "$code" = "200" ] || { echo "after kill health=$code"; exit 1; }
@@ -111,4 +112,4 @@ jobs:
           echo "── install.log tail ──"
           tail -20 /tmp/install.log 2>/dev/null || true
           echo "── launchd log tail ──"
-          tail -20 ~/pojun/pojun.launchd.log 2>/dev/null || true
+          tail -20 ~/pojun/redai.launchd.log 2>/dev/null || true
