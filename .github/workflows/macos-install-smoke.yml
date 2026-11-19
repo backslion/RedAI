@@ -27,9 +27,11 @@ jobs:
     runs-on: macos-15
     timeout-minutes: 30
     env:
-      # 冒烟钉一个明确的已发布版本，避免 latest 变动导致不可复现；
-      # 版本里有 darwin 包自 v0.4.66 起。
-      POJUN_SMOKE_VERSION: v0.4.66
+      # 冒烟钉一个本仓库已发布的版本，避免 latest 变动导致不可复现。
+      # 注意：这个版本必须真实存在于 backslion/RedAI 的 Release 里，否则 install.sh
+      # 下载 404（改名迁移后 v0.4.66 属于原仓库，在这里不存在，曾因此失败）。
+      # 版本序列已从 0.1 重新起算，发新版本时按需同步上调。
+      POJUN_SMOKE_VERSION: v0.1
     steps:
       - uses: actions/checkout@v5
 
