@@ -45,7 +45,7 @@ func main() {
 	flag.Parse()
 
 	if *showVer {
-		fmt.Println("pojun-hostd", version)
+		fmt.Println("redai-hostd", version)
 		return
 	}
 

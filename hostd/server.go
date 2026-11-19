@@ -389,7 +389,7 @@ func (s *Server) runGitHub(ctx context.Context, j *Job, tool hosttools.Tool, pro
 
 		for attempt := 1; attempt <= 3; attempt++ {
 			req, _ := http.NewRequestWithContext(ctx, http.MethodGet, u, nil)
-			req.Header.Set("User-Agent", "pojun-hostd")
+			req.Header.Set("User-Agent", "redai-hostd")
 			resp, err := client.Do(req)
 			if err == nil && resp.StatusCode == http.StatusOK {
 				blob, err = io.ReadAll(io.LimitReader(resp.Body, 128<<20))
@@ -635,7 +635,7 @@ func latestTag(ctx context.Context, client *http.Client, apiURL string) (string,
 func latestTagViaAPI(ctx context.Context, client *http.Client, apiURL string) (string, error) {
 	req, _ := http.NewRequestWithContext(ctx, http.MethodGet, apiURL, nil)
 	req.Header.Set("Accept", "application/vnd.github+json")
-	req.Header.Set("User-Agent", "pojun-hostd")
+	req.Header.Set("User-Agent", "redai-hostd")
 	resp, err := client.Do(req)
 	if err != nil {
 		return "", err
@@ -659,7 +659,7 @@ func latestTagViaAPI(ctx context.Context, client *http.Client, apiURL string) (s
 // latestTagViaRedirect 不跟随重定向，从 Location 路径末尾取 tag。
 func latestTagViaRedirect(ctx context.Context, client *http.Client, url string) (string, error) {
 	req, _ := http.NewRequestWithContext(ctx, http.MethodGet, url, nil)
-	req.Header.Set("User-Agent", "pojun-hostd")
+	req.Header.Set("User-Agent", "redai-hostd")
 	// 不跟随：拿到 302 的 Location 即可（跟随后会落到 release 页 HTML）。
 	noFollow := *client
 	noFollow.CheckRedirect = func(*http.Request, []*http.Request) error { return http.ErrUseLastResponse }
@@ -689,7 +689,7 @@ func (s *Server) Handler() http.Handler {
 
 	mux.HandleFunc("GET /healthz", func(w http.ResponseWriter, r *http.Request) {
 		writeJSON(w, 200, map[string]any{
-			"ok": true, "service": "pojun-hostd",
+			"ok": true, "service": "redai-hostd",
 			"version": s.Version,
 			"pkg_mgr": string(s.pkgMgr),
 			"tools":   len(hosttools.Inventory()),
@@ -699,7 +699,7 @@ func (s *Server) Handler() http.Handler {
 	// /version 供主服务做版本对齐：主程序自我升级后会拿自己的版本号来敲门，
 	// 助手发现自己落后就自我换装（见 UpgradeSelf 的注释：只能由它自己来做）。
 	mux.HandleFunc("GET /version", func(w http.ResponseWriter, r *http.Request) {
-		writeJSON(w, 200, map[string]any{"service": "pojun-hostd", "version": s.Version})
+		writeJSON(w, 200, map[string]any{"service": "redai-hostd", "version": s.Version})
 	})
 
 	mux.HandleFunc("POST /self-upgrade", func(w http.ResponseWriter, r *http.Request) {

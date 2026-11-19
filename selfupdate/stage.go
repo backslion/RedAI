@@ -212,14 +212,14 @@ func get(ctx context.Context, c *http.Client, rawURL string) (io.ReadCloser, err
 	return resp.Body, nil
 }
 
-// extractBinary 从发布包里取出 pojun 可执行文件。
+// extractBinary 从发布包里取出 redai 可执行文件。
 //
-// 包内结构是 pojun-<版本>-<os>-<arch>/pojun，但这里按**基名**匹配而不是拼完整
+// 包内结构是 redai-<版本>-<os>-<arch>/redai，但这里按**基名**匹配而不是拼完整
 // 路径：版本号在包名里出现过一次，拼错一个字符就整个升级失败，按基名找更耐改。
 func extractBinary(zipPath, dst string) error {
-	want := "pojun"
+	want := BinaryName
 	if runtime.GOOS == "windows" {
-		want = "pojun.exe"
+		want = BinaryName + ".exe"
 	}
 	zr, err := zip.OpenReader(zipPath)
 	if err != nil {

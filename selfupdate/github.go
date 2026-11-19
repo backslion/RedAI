@@ -19,6 +19,19 @@ import (
 // 这样改的是产物本身，不是运行期可篡改的开关。
 var Repo = "backslion/RedAI"
 
+// 发布包与包内可执行文件的基名，**唯一来源**。
+//
+// 这三个用途必须同名，否则出现的是「看着一切正常、一点更新就炸」的故障：
+//   - AssetName：去 Release 里按名字找资产 → 名字错了报「没有可用资产」
+//   - extractBinary：从 zip 里按基名取主程序 → 错了报「发布包里没有找到 xxx」
+//   - hostd 自我换装：从 zip 里取助手 → 错了报「发布包里没有 xxx」
+//
+// 之前它们各写一份字符串，改名时漏掉任何一处都不会被编译或常规测试发现。
+const (
+	BinaryName = "redai"
+	HelperName = BinaryName + "-hostd"
+)
+
 func latestURL() string { return "https://api.github.com/repos/" + Repo + "/releases/latest" }
 
 func tagURL(tag string) string { return "https://api.github.com/repos/" + Repo + "/releases/tags/" + tag }
@@ -132,7 +145,7 @@ func fetchRelease(ctx context.Context, c *http.Client, apiURL, what string) (*Re
 		return nil, err
 	}
 	req.Header.Set("Accept", "application/vnd.github+json")
-	req.Header.Set("User-Agent", "pojun-selfupdate")
+	req.Header.Set("User-Agent", "redai-selfupdate")
 
 	resp, err := c.Do(req)
 	if err != nil {
@@ -161,9 +174,9 @@ func fetchRelease(ctx context.Context, c *http.Client, apiURL, what string) (*Re
 }
 
 // AssetName 返回当前平台对应的发布包名，与 build.sh 的 package_binary 保持一致：
-// pojun-<版本>-<os>-<arch>.zip（版本号不带 v 前缀）。
+// redai-<版本>-<os>-<arch>.zip（版本号不带 v 前缀）。
 func AssetName(tag, goos, goarch string) string {
-	return fmt.Sprintf("pojun-%s-%s-%s.zip", strings.TrimPrefix(tag, "v"), goos, goarch)
+	return fmt.Sprintf("%s-%s-%s-%s.zip", BinaryName, strings.TrimPrefix(tag, "v"), goos, goarch)
 }
 
 // FindAsset 在 Release 里按名字找资产。

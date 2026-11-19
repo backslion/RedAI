@@ -51,8 +51,8 @@ func (s *Server) UpgradeSelf(ctx context.Context, tag, proxy string) error {
 
 	tmp := filepath.Join(dir, ".pojun-hostd.new")
 	defer func() { _ = os.Remove(tmp) }()
-	if err := selfupdate.ExtractMember(zipPath, "pojun-hostd", tmp); err != nil {
-		return fmt.Errorf("发布包里没有 pojun-hostd：%w", err)
+	if err := selfupdate.ExtractMember(zipPath, selfupdate.HelperName, tmp); err != nil {
+		return fmt.Errorf("发布包里没有 redai-hostd：%w", err)
 	}
 	if err := selfupdate.SmokeTestBinary(tmp, "-version"); err != nil {
 		return fmt.Errorf("新版本无法在当前系统运行：%w", err)
