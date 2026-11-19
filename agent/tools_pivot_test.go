@@ -6,7 +6,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/chu0119/pojun/pivot"
+	"github.com/backslion/RedAI/pivot"
 
 	actool "github.com/Autumn-27/norma/tool"
 )

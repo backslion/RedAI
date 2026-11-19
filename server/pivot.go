@@ -17,8 +17,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/chu0119/pojun/agent"
-	"github.com/chu0119/pojun/pivot"
+	"github.com/backslion/RedAI/agent"
+	"github.com/backslion/RedAI/pivot"
 )
 
 // initPivot 建 manager 并注入 agent 工具集。

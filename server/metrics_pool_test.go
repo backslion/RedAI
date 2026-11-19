@@ -9,7 +9,7 @@ import (
 	"strings"
 	"testing"
 
-	pgdb "github.com/chu0119/pojun/db"
+	pgdb "github.com/backslion/RedAI/db"
 )
 
 // stubConnector 让我们能在不连 PG 的前提下拿到一个真实的 *sql.DB：只用于读

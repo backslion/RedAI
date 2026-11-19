@@ -10,8 +10,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/chu0119/pojun/agent"
-	"github.com/chu0119/pojun/db"
+	"github.com/backslion/RedAI/agent"
+	"github.com/backslion/RedAI/db"
 )
 
 type goalSpec struct {

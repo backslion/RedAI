@@ -6,8 +6,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/chu0119/pojun/db"
-	"github.com/chu0119/pojun/knowledge"
+	"github.com/backslion/RedAI/db"
+	"github.com/backslion/RedAI/knowledge"
 )
 
 // 知识库 API（v0.5.x）。

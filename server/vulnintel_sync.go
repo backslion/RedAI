@@ -14,8 +14,8 @@ import (
 	"strings"
 	"time"
 
-	pgdb "github.com/chu0119/pojun/db"
-	"github.com/chu0119/pojun/vulnintel"
+	pgdb "github.com/backslion/RedAI/db"
+	"github.com/backslion/RedAI/vulnintel"
 )
 
 // openIntelBackgroundPool 建漏洞情报后台批处理专用池。

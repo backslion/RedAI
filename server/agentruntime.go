@@ -1,8 +1,8 @@
 package server
 
 import (
-	"github.com/chu0119/pojun/agent"
-	"github.com/chu0119/pojun/honeydetect"
+	"github.com/backslion/RedAI/agent"
+	"github.com/backslion/RedAI/honeydetect"
 )
 
 // agentRuntime 把本实例的执行面依赖打成一个包交给 agent。

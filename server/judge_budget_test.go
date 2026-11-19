@@ -9,7 +9,7 @@ import (
 	"time"
 
 	"github.com/Autumn-27/norma/llm"
-	"github.com/chu0119/pojun/intercept"
+	"github.com/backslion/RedAI/intercept"
 )
 
 // scriptedProvider 按脚本返回内容，并记录每次调用的 MaxTokens。

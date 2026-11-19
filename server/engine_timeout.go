@@ -4,15 +4,15 @@ import (
 	"context"
 	"path/filepath"
 
-	"github.com/chu0119/pojun/intercept"
+	"github.com/backslion/RedAI/intercept"
 	"fmt"
 	"log"
 	"strconv"
 	"sync/atomic"
 	"time"
 
-	"github.com/chu0119/pojun/agent"
-	"github.com/chu0119/pojun/db"
+	"github.com/backslion/RedAI/agent"
+	"github.com/backslion/RedAI/db"
 )
 
 // 任务级超时协调器(见 docs/任务级超时与收尾设计.md §4/§8.5)。

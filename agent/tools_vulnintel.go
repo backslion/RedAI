@@ -20,8 +20,8 @@ import (
 
 	actool "github.com/Autumn-27/norma/tool"
 
-	"github.com/chu0119/pojun/selfupdate"
-	"github.com/chu0119/pojun/vulnintel"
+	"github.com/backslion/RedAI/selfupdate"
+	"github.com/backslion/RedAI/vulnintel"
 )
 
 // vulnintel 依赖经 Runtime 取（见 runtime.go）：默认实例在 server 启动时注入，

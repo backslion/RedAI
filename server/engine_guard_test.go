@@ -3,7 +3,7 @@ package server
 import (
 	"testing"
 
-	"github.com/chu0119/pojun/db"
+	"github.com/backslion/RedAI/db"
 )
 
 // v0.4.28 重复调用检测（PentAGI 机制自研）：同一工具+相同入参连续 ≥3 次拦截，

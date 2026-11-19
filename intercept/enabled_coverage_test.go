@@ -20,7 +20,7 @@ import (
 	"regexp"
 	"testing"
 
-	"github.com/chu0119/pojun/db"
+	"github.com/backslion/RedAI/db"
 )
 
 func defaultEnabledSet() map[string]bool {

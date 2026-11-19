@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/chu0119/pojun/db"
+	"github.com/backslion/RedAI/db"
 )
 
 // testStore mirrors the other packages' testmain pattern: without POJUN_PG_DSN

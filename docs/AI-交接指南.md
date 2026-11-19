@@ -1,14 +1,14 @@
 # AI 交接指南（接手本项目的 AI 请先完整读完）
 
 > 最后更新：2026-11-07（v0.4.62 已发布并部署测试机）
-> 读者：接手破军 Pojun 项目的 AI 助手。本文假设你会读代码、跑测试、操作 Linux。
+> 读者：接手REDAI RedAI 项目的 AI 助手。本文假设你会读代码、跑测试、操作 Linux。
 > 凭据（SSH/数据库密码/LLM key）**不写入本仓库**（它是公开仓库），只存在于维护者本地记忆文件中——需要时向维护者要。
 
 ## 1. 项目是什么
 
-**破军 Pojun**（`github.com/chu0119/Pojun`，2026-11-02 前名 ARTEX）是一套 **LLM 多 Agent 自主渗透测试平台**：给一句话目标，自动完成「目标拆解 → 侦察 → 漏洞挖掘 → 利用 → 后渗透 → 报告」全流程，人随时插手纠偏。
+**REDAI RedAI**（`github.com/backslion/RedAI`，2026-11-02 前名 ARTEX）是一套 **LLM 多 Agent 自主渗透测试平台**：给一句话目标，自动完成「目标拆解 → 侦察 → 漏洞挖掘 → 利用 → 后渗透 → 报告」全流程，人随时插手纠偏。
 
-- **Go 单体后端**（`github.com/chu0119/pojun`，内嵌 Next.js 静态前端 `-tags embedui`）
+- **Go 单体后端**（`github.com/backslion/RedAI`，内嵌 Next.js 静态前端 `-tags embedui`）
 - **PostgreSQL** 是唯一持久层（schema.sql 幂等迁移）
 - Agent 引擎基于 **norma SDK**（fork：`go.mod` replace 到 `github.com/chu0119/Norma`）
 - 定位：Linux 服务器常驻部署，仅用于授权渗透测试/SRC
@@ -21,8 +21,8 @@
 | 位置 | 内容 |
 |---|---|
 | `D:\xiangmu\aiai\ARTEX` | 主仓工作区（Windows，Git Bash） |
-| `github.com/chu0119/Pojun` | 主仓（PUBLIC，ghcr.io/chu0119/pojun 镜像随 tag 自动发布） |
-| `D:\xiangmu\ARTEX-SKILL` → `chu0119/pojun-skill` | 单技能可移植版（v2.0，与平台方法论同源，改动要双向同步） |
+| `github.com/backslion/RedAI` | 主仓（PUBLIC，ghcr.io/backslion/redai 镜像随 tag 自动发布） |
+| `D:\xiangmu\ARTEX-SKILL` → `backslion/RedAI-skill` | 单技能可移植版（v2.0，与平台方法论同源，改动要双向同步） |
 | `github.com/chu0119/Norma` | agent harness SDK fork（go.mod replace 指向它；改 SDK 要单独发版并 bump replace 版本） |
 | **Kali 测试机** `192.168.198.128` | 真实运行实例（SSH 用户 xingchuan，paramiko 直连；凭据见本地记忆）。服务：`systemctl {pojun,pojun-hostd}`，目录 `/opt/pojun`，DB 是 PostgreSQL 库 **`artex`**（历史残留名），实例以 `pojun` 用户运行 |
 | 本机 Docker | 测试 PG：容器 `pojun-audit-pg`（端口 15432，跑测试前 `docker start`） |
@@ -59,7 +59,7 @@
 3. **CHANGELOG.md** 加条目（锚点用 `assert` 防 replace 静默失败）。
 4. **commit + tag + push**：`git add -A && git commit && git tag v0.4.x && git push origin main v0.4.x`。版本号小步递增（用户明确要求不提大版本）。本机网络对 GitHub 不稳：push 失败先重试，再走仓库级代理（已配 `git config http.proxy http://127.0.0.1:7897`）。
 5. **CI（release.yml）自动**：交叉编译 linux amd64+arm64 → zip+SHA256SUMS → GitHub Release → **docker 多架构镜像推 ghcr**。⚠️ CI 会用自己的打包覆盖手动上传的同名资产（属正常，最终自洽）；CI 的 SHA256SUMS 若内容陈旧要手动覆盖。
-6. **部署 Kali**（paramiko 配方）：sftp 上传 `dist/pojun-linux-amd64/pojun` → `systemctl stop pojun`（hostd 一并）→ `install -m 0755 /tmp/pojun /opt/pojun/.pojun.new && mv -f ... /opt/pojun/pojun`（ETXTBSY 安全换装）→ `chown pojun:pojun` → start → `journalctl -u pojun | grep POJUN` 核对版本行 → `/api/health` 200。若改了 skills/mcp-servers/前端，这些也要同步（或直接跑 install.sh 走 file:// 本地源）。
+6. **部署 Kali**（paramiko 配方）：sftp 上传 `dist/redai-linux-amd64/pojun` → `systemctl stop pojun`（hostd 一并）→ `install -m 0755 /tmp/pojun /opt/pojun/.redai.new && mv -f ... /opt/pojun/redai`（ETXTBSY 安全换装）→ `chown pojun:pojun` → start → `journalctl -u pojun | grep RedAI` 核对版本行 → `/api/health` 200。若改了 skills/mcp-servers/前端，这些也要同步（或直接跑 install.sh 走 file:// 本地源）。
 
 ## 5. 测试纪律
 

@@ -31,7 +31,7 @@ import (
 
 	"github.com/Autumn-27/norma/llm"
 
-	"github.com/chu0119/pojun/metrics"
+	"github.com/backslion/RedAI/metrics"
 )
 
 // processStart 是包初始化时刻，作为 uptime 起点（不依赖 Server 构造，

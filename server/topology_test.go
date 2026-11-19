@@ -11,7 +11,7 @@ package server
 import (
 	"testing"
 
-	"github.com/chu0119/pojun/db"
+	"github.com/backslion/RedAI/db"
 )
 
 func TestSplitTarget(t *testing.T) {

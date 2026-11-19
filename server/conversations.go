@@ -13,10 +13,10 @@ import (
 	"time"
 	"unicode/utf8"
 
-	"github.com/chu0119/pojun/agent"
-	"github.com/chu0119/pojun/db"
-	"github.com/chu0119/pojun/intercept"
-	"github.com/chu0119/pojun/sidequestion"
+	"github.com/backslion/RedAI/agent"
+	"github.com/backslion/RedAI/db"
+	"github.com/backslion/RedAI/intercept"
+	"github.com/backslion/RedAI/sidequestion"
 )
 
 const (

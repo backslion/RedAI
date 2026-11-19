@@ -9,7 +9,7 @@ package server
 // 与上游 artex-full 的差异：
 //   - 会话库随平台数据目录走（s.dataDir/webshells.json），不再写死 /opt/artex；
 //   - 多任务隔离（TaskID），上游是单实例全局库；
-//   - 不需要 Python MCP 那一侧——Pojun 的工具是 norma 原生 CoreTool，协议只保留
+//   - 不需要 Python MCP 那一侧——RedAI 的工具是 norma 原生 CoreTool，协议只保留
 //     Go 一份实现，不存在「两边改了协议对不上」的问题。
 //
 // 参数名（param）永不出现在任何列表/详情响应里：它等价于马的钥匙，泄漏了等于
@@ -25,9 +25,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/chu0119/pojun/agent"
-	"github.com/chu0119/pojun/db"
-	"github.com/chu0119/pojun/webshell"
+	"github.com/backslion/RedAI/agent"
+	"github.com/backslion/RedAI/db"
+	"github.com/backslion/RedAI/webshell"
 )
 
 // initWebShell 建 manager、接审计钩子、注入 agent 工具集。

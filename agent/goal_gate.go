@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"strings"
 
-	"github.com/chu0119/pojun/db"
+	"github.com/backslion/RedAI/db"
 )
 
 // capabilityGoalTerms 是「目标要求拿到实际能力/高危结果」的关键词。命中这些

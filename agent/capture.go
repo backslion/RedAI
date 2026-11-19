@@ -6,9 +6,9 @@ import (
 	"time"
 	"unicode/utf8"
 
-	"github.com/chu0119/pojun/db"
-	"github.com/chu0119/pojun/intercept"
-	"github.com/chu0119/pojun/sidequestion"
+	"github.com/backslion/RedAI/db"
+	"github.com/backslion/RedAI/intercept"
+	"github.com/backslion/RedAI/sidequestion"
 	"github.com/Autumn-27/norma/agentcore"
 	"github.com/Autumn-27/norma/harness"
 	"github.com/Autumn-27/norma/llm"

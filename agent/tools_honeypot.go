@@ -25,7 +25,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/chu0119/pojun/honeydetect"
+	"github.com/backslion/RedAI/honeydetect"
 
 	actool "github.com/Autumn-27/norma/tool"
 )

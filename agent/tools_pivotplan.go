@@ -32,8 +32,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/chu0119/pojun/pivot"
-	"github.com/chu0119/pojun/webshell"
+	"github.com/backslion/RedAI/pivot"
+	"github.com/backslion/RedAI/webshell"
 
 	actool "github.com/Autumn-27/norma/tool"
 )

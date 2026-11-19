@@ -2,14 +2,14 @@
 #
 # 运行镜像（不在镜像里编译）：装全内置工具，放入**预编译好的 Linux 单二进制**。
 # 二进制由 CI 的 binaries job 交叉编译（纯 Go、无 QEMU），按目标架构放在
-# 构建上下文的 dist/<TARGETARCH>/pojun。这样多架构构建时 arm64 只需模拟 apt 层，
+# 构建上下文的 dist/<TARGETARCH>/redai。这样多架构构建时 arm64 只需模拟 apt 层，
 # 不再模拟 Next/Go 编译，速度快得多。
 #
 # 本地手动构建镜像时，先自行准备二进制：
 #   cd web && npm run build:static && cd ..
 #   cp -r web/out server/webui/dist
-#   CGO_ENABLED=0 GOARCH=amd64 go build -tags embedui -o dist/amd64/pojun ./cmd/pojun
-#   docker build -t pojun:local .
+#   CGO_ENABLED=0 GOARCH=amd64 go build -tags embedui -o dist/amd64/redai ./cmd/redai
+#   docker build -t redai:local .
 # kerbrute / waybackurls 上游不发 linux/arm64 资产，用 Go 现场编译补齐
 # （builder 走目标平台的 golang 镜像，产物架构自动正确；QEMU 下只编译这两个
 # 小工具，构建时间增加可控）。
@@ -53,7 +53,7 @@ RUN apt-get update \
 COPY --from=gobuild /go/bin/kerbrute /usr/local/bin/kerbrute
 COPY --from=gobuild /go/bin/waybackurls /usr/local/bin/waybackurls
 # nuclei(漏洞模板扫描引擎,配合 /app/nuclei-templates 情报模板库):
-# 官方 release 单二进制按架构下载,模板树由 pojun 的 vulnintel 同步器维护
+# 官方 release 单二进制按架构下载,模板树由 redai 的 vulnintel 同步器维护
 # (git clone --depth 1 到 /app/nuclei-templates,每轮同步 git pull 更新)。
 RUN set -eux; \
     arch="$(dpkg --print-architecture)"; \
@@ -82,16 +82,16 @@ RUN npm install -g @playwright/mcp@latest @playwright/cli@latest playwright@late
     && playwright install --with-deps chromium \
     && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
-# 预编译好的对应架构二进制（dist/amd64/pojun 或 dist/arm64/pojun）
-COPY dist/${TARGETARCH}/pojun /app/pojun
+# 预编译好的对应架构二进制（dist/amd64/redai 或 dist/arm64/redai）
+COPY dist/${TARGETARCH}/redai /app/redai
 # 特权安装助手：容器内以 root 常驻 unix socket，「宿主环境」页可运行期装/重装工具；
 # 构建期也用它把 catalog 缺失项一次性装齐（开箱即用，见下方 install-all）。
-COPY dist/${TARGETARCH}/pojun-hostd /app/pojun-hostd
+COPY dist/${TARGETARCH}/redai-hostd /app/redai-hostd
 # 守护启动脚本：进程退出后按退出码决定是否重新拉起，页面一键更新靠它完成换装。
-# 它同时负责把 SIGTERM 转发给 pojun —— docker stop 只把信号发给 PID 1，
-# 不转发的话 pojun 收不到、做不了优雅关闭，10 秒后被 SIGKILL 硬杀。
+# 它同时负责把 SIGTERM 转发给 redai —— docker stop 只把信号发给 PID 1，
+# 不转发的话 redai 收不到、做不了优雅关闭，10 秒后被 SIGKILL 硬杀。
 COPY start.sh /app/start.sh
-RUN chmod +x /app/pojun /app/pojun-hostd /app/start.sh
+RUN chmod +x /app/redai /app/redai-hostd /app/start.sh
 COPY skills/ /app/skills/
 # 公文字体：docx→PDF 渲染需要（install.sh 二进制形态从 raw 下载；镜像直接 COPY 仓库内文件）
 COPY report/fonts/ /usr/share/fonts/gongwen/

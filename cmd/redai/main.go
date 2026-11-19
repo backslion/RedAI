@@ -1,4 +1,4 @@
-// Command pojun runs the POJUN backend: the dual SQLite graph stores,
+// Command pojun runs the RedAI backend: the dual SQLite graph stores,
 // the event-driven exploration engine, and the JSON HTTP API consumed by the
 // shadcn/ui frontend.
 package main
@@ -16,12 +16,12 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/chu0119/pojun/agent"
-	"github.com/chu0119/pojun/config"
-	"github.com/chu0119/pojun/honeydetect"
-	"github.com/chu0119/pojun/selfupdate"
-	"github.com/chu0119/pojun/server"
-	"github.com/chu0119/pojun/traffic"
+	"github.com/backslion/RedAI/agent"
+	"github.com/backslion/RedAI/config"
+	"github.com/backslion/RedAI/honeydetect"
+	"github.com/backslion/RedAI/selfupdate"
+	"github.com/backslion/RedAI/server"
+	"github.com/backslion/RedAI/traffic"
 )
 
 // version is the build version, injected at release time via
@@ -131,7 +131,7 @@ func run() int {
 	}
 
 	go func() {
-		log.Printf("POJUN %s backend listening on %s (data=%s, workers=%d)", version, *addr, *dataDir, mgr.Workers())
+		log.Printf("RedAI %s backend listening on %s (data=%s, workers=%d)", version, *addr, *dataDir, mgr.Workers())
 		if err := httpSrv.ListenAndServe(); err != nil && err != http.ErrServerClosed {
 			log.Fatalf("serve: %v", err)
 		}

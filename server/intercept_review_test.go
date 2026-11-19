@@ -7,8 +7,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/chu0119/pojun/db"
-	"github.com/chu0119/pojun/intercept"
+	"github.com/backslion/RedAI/db"
+	"github.com/backslion/RedAI/intercept"
 	"github.com/Autumn-27/norma/llm"
 )
 

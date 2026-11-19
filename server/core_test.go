@@ -12,7 +12,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/chu0119/pojun/db"
+	"github.com/backslion/RedAI/db"
 )
 
 // TestCoreTaskLifecyclePG exercises the migrated core (tasks/exploration on PG)

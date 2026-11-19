@@ -1,16 +1,16 @@
 <div align="center">
 
-<img src="screenshots/pojun-logo.png" width="96" alt="Pojun"/>
+<img src="screenshots/redai-logo.png" width="96" alt="RedAI"/>
 
-# 破军 Pojun
+# REDAI RedAI
 
 **AI 自主渗透测试平台 · 从一句话目标到可交付漏洞报告**
 
-> 破军，北斗第七星，主杀伐、主变局。<br/>
+> REDAI，北斗第七星，主杀伐、主变局。<br/>
 > 找到防线的破口，并把破口证明给你看。
 
-[![Release](https://img.shields.io/github/v/release/chu0119/Pojun?label=%E7%89%88%E6%9C%AC&color=red)](https://github.com/chu0119/Pojun/releases)
-[![CI](https://github.com/chu0119/Pojun/actions/workflows/ci.yml/badge.svg)](https://github.com/chu0119/Pojun/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/backslion/RedAI?label=%E7%89%88%E6%9C%AC&color=red)](https://github.com/backslion/RedAI/releases)
+[![CI](https://github.com/backslion/RedAI/actions/workflows/ci.yml/badge.svg)](https://github.com/backslion/RedAI/actions/workflows/ci.yml)
 [![License](https://img.shields.io/badge/license-AGPL--3.0-blue)](LICENSE)
 ![Go](https://img.shields.io/badge/Go-1.24+-00ADD8?logo=go&logoColor=white)
 ![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20macOS%20%7C%20Docker-lightgrey)
@@ -18,7 +18,7 @@
 
 **Go 单体后端** · **Next.js 内嵌前端** · **PostgreSQL** · **多 Agent 自主推进** · **全程证据留痕**
 
-📦 [一条命令安装](#快速开始) · 🧠 [单技能版 pojun-skill](https://github.com/chu0119/pojun-skill) —— 本平台方法论的单 skill 版，任意 AI Agent 即装即用
+📦 [一条命令安装](#快速开始)
 
 </div>
 
@@ -33,13 +33,13 @@
 **Linux（Debian / Ubuntu / RHEL / Kali 等，root 执行，全自动交互安装）：**
 
 ```bash
-curl -fsSL https://github.com/chu0119/Pojun/releases/latest/download/install.sh | sudo bash
+curl -fsSL https://github.com/backslion/RedAI/releases/latest/download/install.sh | sudo bash
 ```
 
 **macOS 13+（Apple Silicon / Intel，一条命令，不需要 sudo）：**
 
 ```bash
-curl -fsSL https://github.com/chu0119/Pojun/releases/latest/download/install.sh | bash
+curl -fsSL https://github.com/backslion/RedAI/releases/latest/download/install.sh | bash
 ```
 
 自动完成：Homebrew 检测（没有就装）→ PostgreSQL 16 安装与服务化 → 下载并
@@ -50,7 +50,7 @@ curl -fsSL https://github.com/chu0119/Pojun/releases/latest/download/install.sh 
 **Windows / 已有 Docker（工具链全在镜像里，宿主机零安装）：**
 
 ```bash
-git clone --depth 1 https://github.com/chu0119/Pojun.git pojun && cd pojun
+git clone --depth 1 https://github.com/backslion/RedAI.git redai && cd redai
 cp .env.example .env    # Windows 用 copy；至少改 POSTGRES_PASSWORD
 # Windows（Docker Desktop，WSL2 后端）：
 docker compose -f docker-compose.yml -f docker-compose.windows.yml up -d
@@ -85,10 +85,10 @@ docker compose up -d
 
 ## 这是什么
 
-Pojun 是一套 **LLM 多 Agent 自主渗透测试平台**：给一句话目标，它自动完成
+RedAI 是一套 **LLM 多 Agent 自主渗透测试平台**：给一句话目标，它自动完成
 「目标拆解 → 侦察 → 漏洞挖掘 → 利用 → 后渗透 → 报告」全流程，人随时可以插手纠偏。
 
-它不是一个「包一层 API 的扫描器」。Pojun 的核心设计是**让 AI 像一个守纪律的渗透测试工程师一样干活**：
+它不是一个「包一层 API 的扫描器」。RedAI 的核心设计是**让 AI 像一个守纪律的渗透测试工程师一样干活**：
 
 - **目标闸门**——每个目标必须带可核验的验收标准（如「未授权接口不带凭据返回 200 且
   含业务数据」「越权请求能读取到非本人对象的完整字段」），
@@ -113,57 +113,57 @@ Pojun 是一套 **LLM 多 Agent 自主渗透测试平台**：给一句话目标�
 
 | 控制台登录：首次启动初始化管理员，防爆破锁定 | 总览：任务 / 发现 / 资产 / Token 全局态势与趋势 |
 | :---: | :---: |
-| ![登录](screenshots/pojun-login.png) | ![总览](screenshots/pojun-dashboard.png) |
+| ![登录](screenshots/redai-login.png) | ![总览](screenshots/redai-dashboard.png) |
 
 **任务执行**
 
 | 任务列表：目标进度与漏洞分布一屏可见 | 任务详情：多 Agent 会话，planner 态势研判实时可见 |
 | :---: | :---: |
-| ![任务列表](screenshots/pojun-tasks.png) | ![任务详情](screenshots/pojun-task-detail.png) |
+| ![任务列表](screenshots/redai-tasks.png) | ![任务详情](screenshots/redai-task-detail.png) |
 
 | 任务总览：目标逐条带验收标准，达成状态诚实呈现 |
 | :---: |
-| ![任务总览](screenshots/pojun-task-overview.png) |
+| ![任务总览](screenshots/redai-task-overview.png) |
 
 | 目标管理与操作约束：目标逐条勾选达成，allow/deny 约束直接约束 planner 派单 |
 | :---: |
-| ![目标管理与操作约束](screenshots/pojun-task-goals.png) |
+| ![目标管理与操作约束](screenshots/redai-task-goals.png) |
 
 **发现与证据**
 
 | 发现：跨任务漏洞汇总，按严重度统计 | 漏洞详情：摘要 + 复测命令 + 证据 PoC + 状态卡 |
 | :---: | :---: |
-| ![发现](screenshots/pojun-findings.png) | ![漏洞详情](screenshots/pojun-finding-detail.png) |
+| ![发现](screenshots/redai-findings.png) | ![漏洞详情](screenshots/redai-finding-detail.png) |
 
 | 资产台账：企业 → 根域名/IP/子域/服务/接口 全量登记 | 资产覆盖图：力导向布局，已测节点高亮 |
 | :---: | :---: |
-| ![资产](screenshots/pojun-assets.png) | ![资产覆盖图](screenshots/pojun-assets-graph.png) |
+| ![资产](screenshots/redai-assets.png) | ![资产覆盖图](screenshots/redai-assets-graph.png) |
 
 | 全局流量代理：所有 HTTP/S 往来逐请求留存 |
 | :---: |
-| ![流量](screenshots/pojun-traffic.png) |
+| ![流量](screenshots/redai-traffic.png) |
 
 **平台配置**
 
 | 漏洞情报运营：42 万 CVE / KEV 在野利用 / PoC 仓库持续同步 | 技能库：22 个内置方法论技能，按需加载 |
 | :---: | :---: |
-| ![漏洞情报](screenshots/pojun-vulnintel.png) | ![技能库](screenshots/pojun-skills.png) |
+| ![漏洞情报](screenshots/redai-vulnintel.png) | ![技能库](screenshots/redai-skills.png) |
 
 | MCP 预设：FOFA 测绘 / Playwright / Burp 等一键接入 | Agent 角色：按角色配模型与可见性 |
 | :---: | :---: |
-| ![MCP](screenshots/pojun-mcp.png) | ![Agent](screenshots/pojun-agents.png) |
+| ![MCP](screenshots/redai-mcp.png) | ![Agent](screenshots/redai-agents.png) |
 
 | LLM 配置：多通道轮询 / 熔断 / 故障转移 | 宿主环境：66 件工具体检 + 一键装齐 |
 | :---: | :---: |
-| ![LLM](screenshots/pojun-llm.png) | ![宿主环境](screenshots/pojun-hostenv.png) |
+| ![LLM](screenshots/redai-llm.png) | ![宿主环境](screenshots/redai-hostenv.png) |
 
 | 监听器 / C2：反弹 shell 回连接收与出口管理 | 对话工作台：跨 Agent 对话与工具触发回放 |
 | :---: | :---: |
-| ![C2](screenshots/pojun-c2.png) | ![对话](screenshots/pojun-chat.png) |
+| ![C2](screenshots/redai-c2.png) | ![对话](screenshots/redai-chat.png) |
 
 | 系统设置：目标收尾 / 写回守卫 / 跨任务去重等开关 | 领域工具：agent 可调用的平台工具清单与开关 |
 | :---: | :---: |
-| ![设置](screenshots/pojun-settings.png) | ![工具](screenshots/pojun-tools.png) |
+| ![设置](screenshots/redai-settings.png) | ![工具](screenshots/redai-tools.png) |
 
 ---
 
@@ -247,7 +247,7 @@ sequenceDiagram
 
 ### 7. 漏洞情报运营（持续，不是静态知识库）
 
-多数同类产品的情报是「按组件查」；Pojun 做的是「**按时间流**」——
+多数同类产品的情报是「按组件查」；RedAI 做的是「**按时间流**」——
 **最近 7 天爆了什么 → 匹配我的资产 → 排进任务**：
 
 - NVD 全量/增量（实测库 42 万+）+ **CISA KEV 在野利用** + GitHub Advisory
@@ -463,7 +463,7 @@ flowchart TB
 在**全新 Linux 服务器**（Debian/Ubuntu/CentOS/RHEL/Kali 等）上以 root 执行：
 
 ```bash
-curl -fsSL https://github.com/chu0119/Pojun/releases/latest/download/install.sh | sudo bash
+curl -fsSL https://github.com/backslion/RedAI/releases/latest/download/install.sh | sudo bash
 ```
 
 脚本会交互式问你（直接回车用默认值）：
@@ -478,7 +478,7 @@ curl -fsSL https://github.com/chu0119/Pojun/releases/latest/download/install.sh 
 
 ```bash
 # 全默认（二进制、直连）
-curl -fsSL https://github.com/chu0119/Pojun/releases/latest/download/install.sh | sudo bash -s -- -y
+curl -fsSL https://github.com/backslion/RedAI/releases/latest/download/install.sh | sudo bash -s -- -y
 # 带代理 + 顺装常用渗透工具
 curl -fsSL .../install.sh | sudo bash -s -- --install-proxy=http://10.0.0.14:7897 --with-tools
 # Docker 形态
@@ -493,7 +493,7 @@ curl -fsSL .../install.sh | sudo bash -s -- --mode=docker
 已经会用 Docker 的话，不需要 install.sh：
 
 ```bash
-git clone --depth 1 https://github.com/chu0119/Pojun.git pojun && cd pojun
+git clone --depth 1 https://github.com/backslion/RedAI.git redai && cd redai
 cp .env.example .env      # 至少改 POSTGRES_PASSWORD；POJUN_TAG 可钉到具体版本（如 v0.4.64）
 docker compose up -d      # → http://localhost:8787
 ```
@@ -501,7 +501,7 @@ docker compose up -d      # → http://localhost:8787
 **Windows（Docker Desktop，WSL2 后端）**：
 
 ```powershell
-git clone --depth 1 https://github.com/chu0119/Pojun.git pojun; cd pojun
+git clone --depth 1 https://github.com/backslion/RedAI.git redai; cd redai
 copy .env.example .env    # 至少改 POSTGRES_PASSWORD
 docker compose -f docker-compose.yml -f docker-compose.windows.yml up -d
 # → http://localhost:8787
@@ -517,7 +517,7 @@ docker compose -f docker-compose.yml -f docker-compose.windows.yml up -d
 - 其余与 Linux 相同：镜像内置全部渗透工具 / LibreOffice / Playwright，无需在
   Windows 宿主机安装任何工具链。建议 Docker Desktop 分配 ≥8G 内存。
 
-- 镜像 `ghcr.io/chu0119/pojun`，amd64/arm64 双架构，`POJUN_TAG` 默认 `latest`；
+- 镜像 `ghcr.io/backslion/redai`，amd64/arm64 双架构，`POJUN_TAG` 默认 `latest`；
   渗透工具随镜像内置（与二进制 `--with-tools` 同一套）：nmap / masscan /
   sqlmap / hydra / whatweb / nikto / ffuf / john / impacket / socat /
   proxychains / nuclei / httpx / subfinder / naabu / dnsx / katana / tlsx /
@@ -530,7 +530,7 @@ docker compose -f docker-compose.yml -f docker-compose.windows.yml up -d
 
 ### 方式三：下载预编译包（Linux / macOS，amd64 与 arm64）
 
-到 [Releases](https://github.com/chu0119/Pojun/releases) 下载对应平台包
+到 [Releases](https://github.com/backslion/RedAI/releases) 下载对应平台包
 `pojun-<版本>-<平台>-<架构>.zip`（附 SHA256SUMS），解压后：
 
 ```bash
@@ -560,11 +560,11 @@ Homebrew + launchd，与 Linux 同款体验；下面的手动方式适合不想�
 ```bash
 cd web && npm ci && npm run build:static && cd ..
 cp -r web/out server/webui/dist
-CGO_ENABLED=0 go build -tags embedui -o pojun ./cmd/pojun
-CGO_ENABLED=0 go build -o pojun-hostd ./cmd/pojun-hostd   # 可选：特权安装助手（Linux）
+CGO_ENABLED=0 go build -tags embedui -o pojun ./cmd/redai
+CGO_ENABLED=0 go build -o pojun-hostd ./cmd/redai-hostd   # 可选：特权安装助手（Linux）
 ./start.sh
 # 交叉编译其他平台示例（macOS Apple Silicon）：
-# CGO_ENABLED=0 GOOS=darwin GOARCH=arm64 go build -tags embedui -o pojun-darwin-arm64 ./cmd/pojun
+# CGO_ENABLED=0 GOOS=darwin GOARCH=arm64 go build -tags embedui -o pojun-darwin-arm64 ./cmd/redai
 ```
 
 ### 公网部署
@@ -690,7 +690,7 @@ chisel/ligolo-ng/socat/proxychains/linpeas/pspy/responder…）、
 
 ## 与同类项目的差异
 
-| 维度 | 常见同类 | Pojun |
+| 维度 | 常见同类 | RedAI |
 |---|---|---|
 | 完成判定 | LLM 自评「任务完成」即可收官 | 目标 + 验收标准 + `goal_met` 闸门，未全达成强制记未完成 |
 | 漏洞可信度 | 扫描器输出直接入库 | 机械验证凭据闸门 + L1-L4 证据分级 + 对抗式自检，critical/high 必须 L3+ |
@@ -722,7 +722,7 @@ go test ./...   # 连 PG 跑全量（CI 用 -p 1 串行防跨包死锁）
 cd web && npx tsc --noEmit && NEXT_EXPORT=1 npx next build
 ```
 
-- 后端：`go run ./cmd/pojun`（`-tags embedui` 内嵌前端）
+- 后端：`go run ./cmd/redai`（`-tags embedui` 内嵌前端）
 - 前端：`cd web && npm run dev`（`/api` 反代热更新）
 - Mock 预览：`cd web && NEXT_PUBLIC_MOCK=1 npm run dev`
 
@@ -759,7 +759,7 @@ docs/           设计文档 / 部署手册 / 能力对照
 | 文档 | 内容 |
 |---|---|
 | [docs/AI-交接指南.md](docs/AI-交接指南.md) | 机制→代码位置地图、发版流程、测试纪律、已知问题与未决方向 |
-| [docs/跨分支能力移植.md](docs/跨分支能力移植.md) | 以 Pojun 为母版吸收其他 ARTEX 分支：差集、改造点、未移植项与验证方式 |
+| [docs/跨分支能力移植.md](docs/跨分支能力移植.md) | 以 RedAI 为母版吸收其他 ARTEX 分支：差集、改造点、未移植项与验证方式 |
 | [docs/01-双图架构.md](docs/01-双图架构.md) | 资产图/探索图、锚点、schema 迁移设计、不变量清单 |
 | [docs/02-引擎与调度闭环.md](docs/02-引擎与调度闭环.md) | planner/worker 编排与生命周期 |
 | [docs/03-LLM接入层.md](docs/03-LLM接入层.md) | 通道选路、轮询池、熔断、录制计量 |
@@ -815,6 +815,6 @@ docs/           设计文档 / 部署手册 / 能力对照
 
 <div align="center">
 
-**破军 · Pojun** — 找到防线的破口，并把破口证明给你看。
+**REDAI · RedAI** — 找到防线的破口，并把破口证明给你看。
 
 </div>

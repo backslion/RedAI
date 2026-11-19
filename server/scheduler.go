@@ -9,7 +9,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/chu0119/pojun/db"
+	"github.com/backslion/RedAI/db"
 )
 
 // Scheduler drives P3 triggers: on each tick it fires due interval triggers and

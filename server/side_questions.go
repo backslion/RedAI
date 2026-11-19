@@ -17,10 +17,10 @@ import (
 
 	"github.com/Autumn-27/norma/llm"
 	"github.com/Autumn-27/norma/transcript"
-	"github.com/chu0119/pojun/agent"
-	"github.com/chu0119/pojun/db"
-	"github.com/chu0119/pojun/llmrec"
-	"github.com/chu0119/pojun/sidequestion"
+	"github.com/backslion/RedAI/agent"
+	"github.com/backslion/RedAI/db"
+	"github.com/backslion/RedAI/llmrec"
+	"github.com/backslion/RedAI/sidequestion"
 )
 
 type sideRun struct {

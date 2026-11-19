@@ -4,7 +4,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/chu0119/pojun/hosttools"
+	"github.com/backslion/RedAI/hosttools"
 )
 
 // worker 的 system prompt 里必须带宿主工具清单。

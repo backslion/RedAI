@@ -24,18 +24,18 @@ import (
 	"github.com/Autumn-27/norma/llm"
 	actool "github.com/Autumn-27/norma/tool"
 	"github.com/Autumn-27/norma/transcript"
-	"github.com/chu0119/pojun/agent"
-	"github.com/chu0119/pojun/db"
-	"github.com/chu0119/pojun/hostd"
-	"github.com/chu0119/pojun/intercept"
-	"github.com/chu0119/pojun/listener"
-	"github.com/chu0119/pojun/llmpool"
-	"github.com/chu0119/pojun/llmrec"
-	"github.com/chu0119/pojun/pivot"
-	"github.com/chu0119/pojun/report"
-	stagepkg "github.com/chu0119/pojun/stage"
-	"github.com/chu0119/pojun/traffic"
-	"github.com/chu0119/pojun/webshell"
+	"github.com/backslion/RedAI/agent"
+	"github.com/backslion/RedAI/db"
+	"github.com/backslion/RedAI/hostd"
+	"github.com/backslion/RedAI/intercept"
+	"github.com/backslion/RedAI/listener"
+	"github.com/backslion/RedAI/llmpool"
+	"github.com/backslion/RedAI/llmrec"
+	"github.com/backslion/RedAI/pivot"
+	"github.com/backslion/RedAI/report"
+	stagepkg "github.com/backslion/RedAI/stage"
+	"github.com/backslion/RedAI/traffic"
+	"github.com/backslion/RedAI/webshell"
 )
 
 // BuildVersion is the backend application version, injected from cmd/pojun at
@@ -43,7 +43,7 @@ import (
 // Defaults to "dev" for local builds. Exposed to the frontend via GET /api/health.
 var BuildVersion = "dev"
 
-// Server exposes the POJUN backend over a JSON HTTP API for the shadcn/ui
+// Server exposes the RedAI backend over a JSON HTTP API for the shadcn/ui
 // frontend.
 type Server struct {
 	m      *Manager
@@ -399,7 +399,7 @@ func (s *Server) agentMaxTurns(key string) int {
 
 // agentRunSeconds returns the configured wall-clock run budget (seconds) for an
 // agent key (0 = unlimited; 1200 fallback when no DB or no row, matching the
-// seed default and upstream POJUN-upstream).
+// seed default and upstream RedAI-upstream).
 //
 // 兜底值跟着种子默认走（1200），不是 3600：DB 读不出来时回落到一个**长** run
 // 会让所有意图一起变慢（2026-10-21 实测 3600s 时 4 个意图跑满一小时、

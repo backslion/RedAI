@@ -4,7 +4,7 @@ import (
 	"context"
 	"database/sql"
 
-	"github.com/chu0119/pojun/db"
+	"github.com/backslion/RedAI/db"
 )
 
 // Store 持有一份 CVE/KEV/GHSA/PoC 情报库的读写入口。

@@ -2,7 +2,7 @@ package agent
 
 // web_fingerprint：Web 指纹识别（组件 + 版本），输出可直接喂给 search_vulns。
 //
-// 为什么需要它：Pojun 的攻击链在「信息收集 → 查 CVE」之间一直断着——http_probe
+// 为什么需要它：RedAI 的攻击链在「信息收集 → 查 CVE」之间一直断着——http_probe
 // 只回 server/title/content_type，dir_probe 只回路径状态码，两者都不产出
 // 「组件名 + 版本」，而 search_vulns 恰恰要求这两个参数。结果就是 worker 看到
 // nginx 首页、却不知道该查什么，最后只能凭印象试几个 CVE。

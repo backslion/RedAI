@@ -5,7 +5,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/chu0119/pojun/sidequestion"
+	"github.com/backslion/RedAI/sidequestion"
 	"github.com/Autumn-27/norma/agentcore"
 )
 

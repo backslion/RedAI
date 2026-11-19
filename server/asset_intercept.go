@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/chu0119/pojun/db"
+	"github.com/backslion/RedAI/db"
 )
 
 // --- asset intercept rule CRUD ---

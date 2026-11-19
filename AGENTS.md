@@ -6,7 +6,7 @@
 
 ## 0. 项目一句话
 
-破军 Pojun = AI 自主渗透测试平台（Go 单体后端 + Next.js 静态导出前端 + PostgreSQL 唯一存储）。
+REDAI RedAI = AI 自主渗透测试平台（Go 单体后端 + Next.js 静态导出前端 + PostgreSQL 唯一存储）。
 planner/worker 双角色多 Agent 自主推进，双图架构（资产图×探索图），三层拦截规则，全程证据留痕。
 接手自已删除的原作者仓库（基线 v0.3.15），现为独立演进项目。**仅供授权测试**（README 免责条款）。
 
@@ -52,7 +52,7 @@ POJUN_SKIP_FRONTEND=1 POJUN_SKIP_NPM_CI=1 POJUN_COMPRESS=0 POJUN_PACKAGE=0 \
 
 ## 4. 关键坑（真实踩过的）
 
-- **默认构建不含前端**：`go build ./cmd/pojun` 出的是 stub（页面报「前端未内嵌」）。内嵌必须
+- **默认构建不含前端**：`go build ./cmd/redai` 出的是 stub（页面报「前端未内嵌」）。内嵌必须
   `-tags embedui` 且先 `cp -r web/out server/webui/dist`。别把无 tags 的现场编译版当正式版部署。
 - **dev 版本号禁用一键更新**：`CompareVersions` 只认纯净三段式；`0.3.95-dev` 这类会被判不可比较。
   本机交叉编译验证时传 `POJUN_BUILD_VERSION` 要注意。

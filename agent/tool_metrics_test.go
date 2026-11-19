@@ -8,7 +8,7 @@ import (
 
 	actool "github.com/Autumn-27/norma/tool"
 
-	"github.com/chu0119/pojun/metrics"
+	"github.com/backslion/RedAI/metrics"
 )
 
 // fakeTool 用 actool.Build 造一个行为可控的最小工具。

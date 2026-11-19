@@ -14,9 +14,9 @@ import (
 
 	"github.com/Autumn-27/norma/llm"
 	"github.com/Autumn-27/norma/transcript"
-	"github.com/chu0119/pojun/agent"
-	"github.com/chu0119/pojun/db"
-	"github.com/chu0119/pojun/llmrec"
+	"github.com/backslion/RedAI/agent"
+	"github.com/backslion/RedAI/db"
+	"github.com/backslion/RedAI/llmrec"
 )
 
 type taskAgentBundle struct {
@@ -446,7 +446,7 @@ func streamTaskLLM(ctx context.Context, taskID string, req llm.CompletionRequest
 				// thinking.type=disabled）→ 换一个不发 thinking 的 provider 重试一次。
 				//
 				// 为什么在这里兜底而不是让每个调用方自己小心：这个 400 在
-				// POJUN 里已经踩了三次（裁决/压缩/旁路摘要），每次都是某个
+				// RedAI 里已经踩了三次（裁决/压缩/旁路摘要），每次都是某个
 				// 新的调用方硬编码了 thinking。放在统一入口，一处修好全局生效。
 				//
 				// 降级必须【换 provider】而不是改请求：thinking 参数在 provider

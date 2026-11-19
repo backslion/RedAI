@@ -15,7 +15,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/chu0119/pojun/notify"
+	"github.com/backslion/RedAI/notify"
 )
 
 var (

@@ -126,7 +126,7 @@ func TestDecoyPageIsStatic(t *testing.T) {
 		t.Fatal("伪页为空")
 	}
 	low := strings.ToLower(decoyNotFound)
-	for _, bad := range []string{"pojun", "破军", "%s", "%d"} {
+	for _, bad := range []string{"pojun", "REDAI", "%s", "%d"} {
 		if strings.Contains(low, bad) {
 			t.Errorf("伪页不应包含 %q（会泄露产品身份或引入格式化）", bad)
 		}

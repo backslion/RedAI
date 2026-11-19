@@ -233,7 +233,7 @@ func loginGuard(w http.ResponseWriter, r *http.Request, action string) bool {
 	return true
 }
 
-// signJWT issues a 7-day HS256 token for user POJUN.
+// signJWT issues a 7-day HS256 token for user RedAI.
 func signJWT(key []byte) (string, error) {
 	return jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.RegisteredClaims{
 		Subject:   "POJUN",

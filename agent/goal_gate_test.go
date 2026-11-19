@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/chu0119/pojun/db"
+	"github.com/backslion/RedAI/db"
 )
 
 func TestGoalRequiresCapabilityEvidence(t *testing.T) {

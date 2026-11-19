@@ -59,7 +59,7 @@ func FetchText(ctx context.Context, rawURL string) (string, string, error) {
 	if err != nil {
 		return "", "", err
 	}
-	req.Header.Set("User-Agent", "Mozilla/5.0 (compatible; Pojun-Knowledge/1.0)")
+	req.Header.Set("User-Agent", "Mozilla/5.0 (compatible; RedAI-Knowledge/1.0)")
 	req.Header.Set("Accept", "text/html,text/plain,application/json;q=0.9,*/*;q=0.5")
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {

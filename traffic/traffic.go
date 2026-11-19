@@ -31,7 +31,7 @@ import (
 	"unicode/utf8"
 
 	"github.com/sirupsen/logrus"
-	"github.com/chu0119/pojun/db"
+	"github.com/backslion/RedAI/db"
 	"github.com/Autumn-27/norma/permission"
 	actool "github.com/Autumn-27/norma/tool"
 	mproxy "github.com/lqqyt2423/go-mitmproxy/proxy"

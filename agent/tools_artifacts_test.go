@@ -6,7 +6,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/chu0119/pojun/db"
+	"github.com/backslion/RedAI/db"
 )
 
 // TestListArtifactsResolvesTaskFromFinding v0.4.20：reporter 没有任务上下文，

@@ -6,7 +6,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/chu0119/pojun/db"
+	"github.com/backslion/RedAI/db"
 	"github.com/Autumn-27/norma/llm"
 	"github.com/Autumn-27/norma/transcript"
 	"github.com/google/uuid"

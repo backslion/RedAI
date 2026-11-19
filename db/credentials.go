@@ -17,7 +17,7 @@
 //   - secret 只进入 asset_credentials 用于写入与唯一键去重；除 SecretByID 外的
 //     所有 SELECT 投影一律不取 secret 列。
 //
-// 与上游的差异：Pojun 的 assets.auth 是 JSONB[] 且已有读路径（list_assets /
+// 与上游的差异：RedAI 的 assets.auth 是 JSONB[] 且已有读路径（list_assets /
 // auth_request），因此本层不改旧读路径，而是**双写**——新工具写新表，同时由
 // backfillAuthCredentials 在启动时把存量 assets.auth 灌进新表，保证两套口径
 // 看到的是同一批凭据。

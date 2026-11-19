@@ -18,7 +18,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/chu0119/pojun/db"
+	"github.com/backslion/RedAI/db"
 )
 
 // chainNext 返回某维度对应的下一跳维度与目标描述（空=不续跳）。

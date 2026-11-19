@@ -4,7 +4,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/chu0119/pojun/db"
+	"github.com/backslion/RedAI/db"
 )
 
 func TestSplitKeepsContentAndOverlap(t *testing.T) {

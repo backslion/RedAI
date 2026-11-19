@@ -17,7 +17,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/chu0119/pojun/db"
+	"github.com/backslion/RedAI/db"
 )
 
 var hostInTextRe = regexp.MustCompile(`(?i)(?:https?://)?([a-z0-9](?:[a-z0-9-]*[a-z0-9])?(?:\.[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)+)(?::\d+)?`)

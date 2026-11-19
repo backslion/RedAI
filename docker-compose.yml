@@ -23,7 +23,7 @@ services:
   pojun:
     # 镜像在 GHCR 与 Docker Hub 双源发布；默认走 GHCR（发布工作流必然推送），
     # 需要换源时用 POJUN_IMAGE 覆盖。
-    image: ${POJUN_IMAGE:-ghcr.io/chu0119/pojun}:${POJUN_TAG:-latest}
+    image: ${POJUN_IMAGE:-ghcr.io/backslion/redai}:${POJUN_TAG:-latest}
     depends_on:
       postgres:
         condition: service_healthy

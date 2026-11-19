@@ -9,8 +9,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/chu0119/pojun/agent"
-	"github.com/chu0119/pojun/llmrec"
+	"github.com/backslion/RedAI/agent"
+	"github.com/backslion/RedAI/llmrec"
 	"github.com/Autumn-27/norma/llm"
 	"github.com/Autumn-27/norma/transcript"
 )

@@ -8,8 +8,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/chu0119/pojun/agent"
-	"github.com/chu0119/pojun/db"
+	"github.com/backslion/RedAI/agent"
+	"github.com/backslion/RedAI/db"
 )
 
 // 覆盖矩阵缺口提醒（v0.4.63）。

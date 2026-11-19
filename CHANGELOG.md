@@ -7,6 +7,24 @@
 > 本段合并收录 v0.4.81 至 v0.4.84 的全部变更。这几版此前只在本机/内网部署，
 > 从未发布过 GitHub Release，因此没有单独拆段；从 v0.4.85 起一版一段。
 
+### 变更：项目更名为 RedAI
+
+仓库迁至 `github.com/backslion/RedAI`，产品显示名统一为 RedAI（中文原「破军」改为
+REDAI），二进制改为 `redai` / `redai-hostd` / `redai-maint`。
+
+**以下标识刻意保留原样（兼容层，不是漏改）**：
+
+- `POJUN_*` 环境变量（`POJUN_PG_DSN` 等）、`/opt/pojun` 安装目录、`pojun` 数据库与
+  数据库角色、`pojun.service` / `pojun-hostd.service` 服务名、门控 cookie `pojun_gate`、
+  前端存储 key、默认登录账号 `POJUN`。
+
+保留的目的是让已有部署**原地升级**即可，不需要重装、迁库或重建账号。改名的收益是
+对外品牌一致，代价不该由运维承担。
+
+自更新源改为构建期注入（`build.sh` 的 `POJUN_REPO`，CI 里取 `github.repository`），
+fork 后产物不会误指向上游仓库——这条很关键：指向上游时 SHA256 校验能过，定制版会被
+静默替换成官方版，且不报错。
+
 ### 新增：网段扩权审批——把「授权范围」从统计口径变成安全边界
 
 任务一直有 `task_scope`（企业/域名/网段），但它只在**资产入库**时起作用：
@@ -204,7 +222,7 @@ TypeError: crypto.randomUUID is not a function
   - `vulnClassChain` 不得重复定义 `inferDimension` 已能推断的类别（双写必漂移）；
   - alias 与推断口径一致；19 值标准枚举全部有归宿。
 
-验证：`go build ./...`、`go build -tags embedui ./cmd/pojun`、`go vet ./agent/ ./db/`
+验证：`go build ./...`、`go build -tags embedui ./cmd/redai`、`go vet ./agent/ ./db/`
 通过；`go test ./agent/ -count=1`（56.0s）全绿。
 
 ### 新增：Web 指纹规则库扩容（59 → 122 条）与规则自检
@@ -251,7 +269,7 @@ TypeError: crypto.randomUUID is not a function
   Harbor 的运维入口页必须同时认出这 3 个平台，且它们要进 `next_queries`。只认出来
   不给出查询，agent 照样不知道该干什么。
 
-验证：`go build ./...`、`go build -tags embedui ./cmd/pojun`、`go vet ./agent/` 通过；
+验证：`go build ./...`、`go build -tags embedui ./cmd/redai`、`go vet ./agent/` 通过；
 `go test ./agent/ -count=1`（56.0s）全绿，含既有 9 条指纹工具用例未回归。
 
 ### 变更：漏洞情报后台同步改用独立连接池（行为等价，只隔离资源）
@@ -287,7 +305,7 @@ TypeError: crypto.randomUUID is not a function
   13 处写语句确实落在后台池，`db` 侧置 nil 使漏改的写点直接 panic）、
   `server/metrics_pool_test.go`（两条池的序列、family 只声明一次、装配残缺不 panic）。
 
-验证：`go build ./...`、`go build -tags embedui ./cmd/pojun`、
+验证：`go build ./...`、`go build -tags embedui ./cmd/redai`、
 `go vet ./db/ ./vulnintel/ ./server/ ./agent/` 通过；`go test ./db/`、`./vulnintel/`、
 `./agent/ -count=1`（57.3s）、`./intercept/ ./webshell/ ./pivot/ ./metrics/` 通过。
 
@@ -316,7 +334,7 @@ TypeError: crypto.randomUUID is not a function
   端点格式、迭代语义不变、提前 break 与错误都落记录）、
   `agent/tool_metrics_test.go`（三种结局分类、结果原样透传）。
 
-验证：`go build ./...`、`go build -tags embedui ./cmd/pojun`、
+验证：`go build ./...`、`go build -tags embedui ./cmd/redai`、
 `go vet ./metrics/ ./agent/ ./server/` 通过；`go test ./metrics/`、
 `go test ./agent/ -count=1`（54.5s）、路由守卫测试通过。
 
@@ -346,7 +364,7 @@ TypeError: crypto.randomUUID is not a function
   「未启用」判定跟着注入走；`server/agentruntime_test.go` 守空 Server 不 panic、
   已装配的 manager 原样带出。
 
-验证：`go build ./...`、`go build -tags embedui ./cmd/pojun`、`go vet
+验证：`go build ./...`、`go build -tags embedui ./cmd/redai`、`go vet
 ./agent/ ./server/ ./db/ ./intercept/ ./webshell/ ./pivot/` 通过；
 `go test ./agent/ -count=1`（55.6s）、`./webshell/ ./pivot/ ./intercept/`
 与路由守卫测试通过。
@@ -680,9 +698,9 @@ agent 用 `knowledge_search` 检索，结论可以带出处。
   `TestCredentialInputFromAuthItem`（回填转换）、`TestSchemaHasCredentialTables`
   （DDL 必须幂等且索引齐全）、`TestPortedToolsBoundToRoles` 扩充四个新工具的绑定断言。
 
-### 新增：跨分支能力移植（以 Pojun 为母版，吸收 ARTEX 生态其他二开分支）
+### 新增：跨分支能力移植（以 RedAI 为母版，吸收 ARTEX 生态其他二开分支）
 
-以 Pojun 为基座，把其他 ARTEX 分支里「Pojun 缺、且纯 Go 零外部二进制」的能力并入，
+以 RedAI 为基座，把其他 ARTEX 分支里「RedAI 缺、且纯 Go 零外部二进制」的能力并入，
 目标是补上**打点绕防、内网纵深、域攻击、反蜜罐、批量导资产**五块短板。
 
 - **打点与绕防（来自 YCode 月落）**：`waf_probe`（30+ WAF 指纹 + ≤40 变体变形 +
@@ -1258,7 +1276,7 @@ agent 用 `knowledge_search` 检索，结论可以带出处。
 
 ### 新增
 
-- **全新 Logo**：「破军·劈星」品牌标识（SVG 矢量重导 512 PNG + 多尺寸 favicon +
+- **全新 Logo**：「REDAI·劈星」品牌标识（SVG 矢量重导 512 PNG + 多尺寸 favicon +
   深色版 logo-mono；侧栏生效，登录页按安全基线不引用 logo）。
 - **授权边界守卫（写回闸门，默认开）**：`record_fact` / `report_finding` 的
   asset_ids 只能锚定本任务自有范围资产——来源/继承范围默认只读、完全越界一律
@@ -1694,7 +1712,7 @@ agent 用 `knowledge_search` 检索，结论可以带出处。
   收敛为 `linux/amd64` + `linux/arm64`；`build.sh --release` 默认目标同步收敛。
   Windows/macOS 暂不适配。
 - **README 安装章节重写**：主推一条命令
-  `curl -fsSL https://github.com/chu0119/Pojun/releases/latest/download/install.sh | sudo bash`
+  `curl -fsSL https://github.com/backslion/RedAI/releases/latest/download/install.sh | sudo bash`
   ——交互式选择部署形态（二进制/Docker）与可选出网代理，自动装依赖（PostgreSQL/
   LibreOffice/poppler/ImageMagick/字体）、建用户目录、初始化数据库、装 systemd 服务并
   启动；另列 `-y`/`--install-proxy`/`--mode=docker` 非交互姿势。预编译包说明改为
@@ -4163,16 +4181,16 @@ done 18 / exhausted 99 / blocked 82——**exhausted 是 done 的 5.5 倍**，�
 - [@Autumn-27](https://github.com/Autumn-27)
 - [@neouks](https://github.com/neouks)
 
-[Unreleased]: https://github.com/chu0119/Pojun/compare/v0.3.10...HEAD
-[0.3.10]: https://github.com/chu0119/Pojun/compare/v0.3.9...v0.3.10
-[0.3.9]: https://github.com/chu0119/Pojun/compare/v0.3.8...v0.3.9
-[0.3.8]: https://github.com/chu0119/Pojun/compare/v0.3.7...v0.3.8
-[0.3.7]: https://github.com/chu0119/Pojun/compare/v0.3.6...v0.3.7
-[0.3.6]: https://github.com/chu0119/Pojun/compare/v0.3.5...v0.3.6
-[0.3.5]: https://github.com/chu0119/Pojun/compare/v0.3.4...v0.3.5
-[0.3.4]: https://github.com/chu0119/Pojun/compare/v0.3.3...v0.3.4
-[0.3.3]: https://github.com/chu0119/Pojun/compare/v0.3.2...v0.3.3
-[0.3.2]: https://github.com/chu0119/Pojun/compare/v0.3.1...v0.3.2
+[Unreleased]: https://github.com/backslion/RedAI/compare/v0.3.10...HEAD
+[0.3.10]: https://github.com/backslion/RedAI/compare/v0.3.9...v0.3.10
+[0.3.9]: https://github.com/backslion/RedAI/compare/v0.3.8...v0.3.9
+[0.3.8]: https://github.com/backslion/RedAI/compare/v0.3.7...v0.3.8
+[0.3.7]: https://github.com/backslion/RedAI/compare/v0.3.6...v0.3.7
+[0.3.6]: https://github.com/backslion/RedAI/compare/v0.3.5...v0.3.6
+[0.3.5]: https://github.com/backslion/RedAI/compare/v0.3.4...v0.3.5
+[0.3.4]: https://github.com/backslion/RedAI/compare/v0.3.3...v0.3.4
+[0.3.3]: https://github.com/backslion/RedAI/compare/v0.3.2...v0.3.3
+[0.3.2]: https://github.com/backslion/RedAI/compare/v0.3.1...v0.3.2
 
 ## 0.4.4 – 0.4.19 发版概要（2026-11-01 ~ 11-02）
 
@@ -4194,4 +4212,4 @@ done 18 / exhausted 99 / blocked 82——**exhausted 是 done 的 5.5 倍**，�
 | v0.4.14 | Kali 部署修复（含 artex-maint，任务 5 自动恢复） |
 | v0.4.15–0.4.16 | 证据卡交互重做 / 任务详情设置页 |
 | v0.4.17–0.4.18 | 数据盘扩容迁移 / 附件 403 权限修复（0644 + fix-permissions） |
-| v0.4.19 | 项目改名 Pojun：全局代码标识 / 二进制 / 目录 / 环境变量 / 镜像 / 仓库 |
+| v0.4.19 | 项目改名 RedAI：全局代码标识 / 二进制 / 目录 / 环境变量 / 镜像 / 仓库 |

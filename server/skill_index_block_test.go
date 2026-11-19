@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/chu0119/pojun/agent"
+	"github.com/backslion/RedAI/agent"
 )
 
 // v0.4.60：技能速查块必须注入 system prompt——Skill 是元工具，模型不被

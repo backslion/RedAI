@@ -3,7 +3,7 @@ package agent
 import (
 	"context"
 
-	"github.com/chu0119/pojun/intercept"
+	"github.com/backslion/RedAI/intercept"
 )
 
 // 自主推进（Autopilot）的提示词尾巴。

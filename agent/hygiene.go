@@ -5,7 +5,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/chu0119/pojun/db"
+	"github.com/backslion/RedAI/db"
 )
 
 // renderBacklogHygiene 把「排太久」或「前提疑似失效」的 open 意图列进本轮规划输入，

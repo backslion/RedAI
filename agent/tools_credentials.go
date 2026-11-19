@@ -34,7 +34,7 @@ import (
 
 	actool "github.com/Autumn-27/norma/tool"
 
-	"github.com/chu0119/pojun/db"
+	"github.com/backslion/RedAI/db"
 )
 
 // recordCredential 是 worker 的 record_credential 工具：把在【当前任务范围内】某

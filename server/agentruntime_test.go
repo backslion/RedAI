@@ -3,8 +3,8 @@ package server
 import (
 	"testing"
 
-	"github.com/chu0119/pojun/listener"
-	"github.com/chu0119/pojun/pivot"
+	"github.com/backslion/RedAI/listener"
+	"github.com/backslion/RedAI/pivot"
 )
 
 // 未装配完成的 Server（测试/降级路径）也必须能给出 Runtime：

@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/chu0119/pojun/db"
+	"github.com/backslion/RedAI/db"
 )
 
 // 总览「目标管理」的人工 CRUD 接口。与 agent 侧的 set_goals 工具写同一批 goal 节点,

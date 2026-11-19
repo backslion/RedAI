@@ -16,9 +16,9 @@ import (
 	"github.com/Autumn-27/norma/permission"
 	actool "github.com/Autumn-27/norma/tool"
 	"github.com/Autumn-27/norma/transcript"
-	"github.com/chu0119/pojun/db"
-	"github.com/chu0119/pojun/hosttools"
-	"github.com/chu0119/pojun/intercept"
+	"github.com/backslion/RedAI/db"
+	"github.com/backslion/RedAI/hosttools"
+	"github.com/backslion/RedAI/intercept"
 )
 
 // Worker is an LLM work agent (docs §4.4): it claims ONE intent, completes it

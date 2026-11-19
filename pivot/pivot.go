@@ -1,6 +1,6 @@
 // Package pivot 把「已控主机」变成平台的内网出口（内网横向穿透）。
 //
-// 定位：Pojun 原有的横向能力是「验证一跳」——ssh_check 确认凭据能登录、
+// 定位：RedAI 原有的横向能力是「验证一跳」——ssh_check 确认凭据能登录、
 // tcp_probe 确认端口开放，但验证完就断了，agent 拿不到一个可复用的出口去打
 // 更深的网段。本包补的就是这一环：建一条长寿命的 SSH 通道，在平台回环上开
 // SOCKS5 或端口转发，之后 curl / 工具链打内网都走它。
@@ -8,7 +8,7 @@
 // 为什么用 SSH 而不是 chisel/suo5（上游 artex-ymh 的 tunnel 方案）：
 //   - chisel/suo5 要在目标机落二进制（suo5 还要 webshell），落不下去就等于没有；
 //     SSH 是目标机本来就开着的服务，通道纯内存，不写任何文件。
-//   - Pojun 的原则是纯 Go、零外部二进制；x/crypto/ssh 已在依赖里。
+//   - RedAI 的原则是纯 Go、零外部二进制；x/crypto/ssh 已在依赖里。
 //   - SSH 的 direct-tcpip 通道天然支持「多跳」：第 N+1 跳的 TCP 连接直接建在
 //     第 N 跳的通道上，不需要在中间主机落任何东西。
 //

@@ -3,12 +3,12 @@ package agent
 import (
 	"sync/atomic"
 
-	"github.com/chu0119/pojun/honeydetect"
-	"github.com/chu0119/pojun/listener"
-	"github.com/chu0119/pojun/pivot"
-	"github.com/chu0119/pojun/stage"
-	"github.com/chu0119/pojun/vulnintel"
-	"github.com/chu0119/pojun/webshell"
+	"github.com/backslion/RedAI/honeydetect"
+	"github.com/backslion/RedAI/listener"
+	"github.com/backslion/RedAI/pivot"
+	"github.com/backslion/RedAI/stage"
+	"github.com/backslion/RedAI/vulnintel"
+	"github.com/backslion/RedAI/webshell"
 )
 
 // Runtime 是一个平台实例的「执行面依赖」：回连接收器、内网穿透、受管投递、

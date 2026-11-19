@@ -4,7 +4,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/chu0119/pojun/hosttools"
+	"github.com/backslion/RedAI/hosttools"
 )
 
 // ValidateProxy 是唯一接受「外部字符串」的入口,注入面必须挡死。

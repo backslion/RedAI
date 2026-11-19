@@ -12,8 +12,8 @@ import (
 	"github.com/Autumn-27/norma/permission"
 	actool "github.com/Autumn-27/norma/tool"
 	"github.com/Autumn-27/norma/transcript"
-	"github.com/chu0119/pojun/db"
-	"github.com/chu0119/pojun/intercept"
+	"github.com/backslion/RedAI/db"
+	"github.com/backslion/RedAI/intercept"
 )
 
 // Planner is the event-driven LLM planner (docs §4.3): each time the asset or

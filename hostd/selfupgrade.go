@@ -7,7 +7,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/chu0119/pojun/selfupdate"
+	"github.com/backslion/RedAI/selfupdate"
 )
 
 // ValidVersionTag 报告 tag 是否是允许的版本号形态。校验实现放在 selfupdate，

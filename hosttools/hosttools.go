@@ -1,6 +1,6 @@
 // Package hosttools:宿主工具体检 + 安装配方。
 //
-// 二进制部署形态下,POJUN 直接跑在操作系统里——宿主装了什么渗透工具,
+// 二进制部署形态下,RedAI 直接跑在操作系统里——宿主装了什么渗透工具,
 // worker 就能通过 Bash 工具直接调用什么。这里用 exec.LookPath 探测一份
 // 常用工具清单(可用/缺失+安装提示),注入 graph_overview 让模型派意图时
 // 知道家底,并通过 /api/tools/inventory 暴露给前端展示。

@@ -7,7 +7,7 @@ tags:
   class: [src, knowledge-base, methodology, recon, exploit-playbook]
 ---
 
-# SRC 漏洞挖掘方法论库（Pojun 适配版）
+# SRC 漏洞挖掘方法论库（RedAI 适配版）
 
 本技能是 SRC/众测场景的**知识库入口**：`references/`（48 篇专题测试方法）与 `rules/`（11 篇流程/价值/报告规则）随技能分发，按需用 Read/Bash 打开，**禁止通读**。
 

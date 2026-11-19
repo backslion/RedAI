@@ -8,7 +8,7 @@
 # 主 compose 把 data/ 以 bind mount 挂进容器。在 Linux 上这是"宿主机直接
 # 查看/备份"的便利；但在 Windows 上 bind mount 走 NTFS ↔ WSL2 I/O 通道，
 # 小文件读写实测慢两个数量级（500 个 4KB 文件：写 ~108 倍 / 读 ~328 倍），
-# 而 Pojun 的流量记录、证据附件、任务工作区都是小文件密集型——必须避开。
+# 而 RedAI 的流量记录、证据附件、任务工作区都是小文件密集型——必须避开。
 # 这里把 data/ 换成 named volume（落在 WSL2 的 linux 文件系统里，性能与
 # 容器层一致）。备份改用：
 #   docker run --rm -v pojun-data:/data -v "%cd%:/backup" alpine \

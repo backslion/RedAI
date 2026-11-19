@@ -10,7 +10,7 @@ import (
 
 	"github.com/Autumn-27/norma/llm"
 
-	"github.com/chu0119/pojun/metrics"
+	"github.com/backslion/RedAI/metrics"
 )
 
 // 指标端点必须在装配未完成的 Server 上也能给出完整响应：

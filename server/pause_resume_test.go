@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/chu0119/pojun/db"
+	"github.com/backslion/RedAI/db"
 )
 
 // 暂停后恢复必须重置看门狗基线，否则暂停时长会被算成「无进展」。

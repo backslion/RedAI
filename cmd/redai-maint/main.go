@@ -28,9 +28,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/chu0119/pojun/agent"
-	"github.com/chu0119/pojun/db"
-	"github.com/chu0119/pojun/docpreview"
+	"github.com/backslion/RedAI/agent"
+	"github.com/backslion/RedAI/db"
+	"github.com/backslion/RedAI/docpreview"
 )
 
 const (
@@ -48,7 +48,7 @@ func main() {
 	}
 	cmd := os.Args[1]
 	fs := flag.NewFlagSet(cmd, flag.ExitOnError)
-	cfgPath := fs.String("config", "/opt/pojun/config.json", "POJUN config.json 路径")
+	cfgPath := fs.String("config", "/opt/pojun/config.json", "RedAI config.json 路径")
 	dataDir := fs.String("data", "", "数据目录（默认取 config 目录下的 data）")
 	force := fs.Bool("force", false, "reset-prompts: 覆盖自定义编辑；previews: 重新生成已 ready 的预览")
 	taskID := fs.Int64("task", 0, "previews: 只处理指定任务 ID")

@@ -25,8 +25,8 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/chu0119/pojun/hosttools"
-	"github.com/chu0119/pojun/proxyprobe"
+	"github.com/backslion/RedAI/hosttools"
+	"github.com/backslion/RedAI/proxyprobe"
 )
 
 // State 任务状态。

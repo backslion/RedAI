@@ -24,7 +24,7 @@ import (
 	actool "github.com/Autumn-27/norma/tool"
 )
 
-// SetNetProxy keeps the YCode-fork entry point name working on top of Pojun's
+// SetNetProxy keeps the YCode-fork entry point name working on top of RedAI's
 // existing egress wiring: HTTP-side net tools (dir_probe / waf_probe /
 // http_login_check / ssrf_probe) reuse the same recording proxy + CA that
 // http_request and session_login already use, so their traffic lands in the

@@ -10,8 +10,8 @@ import (
 	"regexp"
 	"sync/atomic"
 
-	"github.com/chu0119/pojun/agent"
-	"github.com/chu0119/pojun/db"
+	"github.com/backslion/RedAI/agent"
+	"github.com/backslion/RedAI/db"
 )
 
 // 意图级软预算 + 重复调用检测（v0.4.28，同行对比分析 P0 #3/#5）。

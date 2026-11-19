@@ -54,7 +54,7 @@ func TestSanitizeUserAgent(t *testing.T) {
 // End-to-end through the SDK: a real model request issued by TestConnection must
 // carry the configured UA. Non-streaming keeps the mock response trivial.
 func TestTestConnectionSendsConfiguredUserAgent(t *testing.T) {
-	const ua = "Pojun-UA-Test/1.0"
+	const ua = "RedAI-UA-Test/1.0"
 	var (
 		mu   sync.Mutex
 		seen []string

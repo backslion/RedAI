@@ -3,9 +3,9 @@ package agent
 import (
 	"testing"
 
-	"github.com/chu0119/pojun/listener"
-	"github.com/chu0119/pojun/pivot"
-	"github.com/chu0119/pojun/webshell"
+	"github.com/backslion/RedAI/listener"
+	"github.com/backslion/RedAI/pivot"
+	"github.com/backslion/RedAI/webshell"
 )
 
 // 这组测试守的是「把六个包级 var 收成一个 Runtime」之后的等价性：

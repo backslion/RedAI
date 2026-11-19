@@ -16,9 +16,9 @@ import (
 	"strings"
 	"time"
 
-	pgdb "github.com/chu0119/pojun/db"
-	"github.com/chu0119/pojun/traffic"
-	"github.com/chu0119/pojun/vulnintel"
+	pgdb "github.com/backslion/RedAI/db"
+	"github.com/backslion/RedAI/traffic"
+	"github.com/backslion/RedAI/vulnintel"
 )
 
 // 情报配置（对外脱敏：key/token 只回 set 布尔与尾号）。

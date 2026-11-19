@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/chu0119/pojun/agent"
+	"github.com/backslion/RedAI/agent"
 )
 
 func TestPauseCancelsWithNamedCause(t *testing.T) {

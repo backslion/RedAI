@@ -6,8 +6,8 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/chu0119/pojun/db"
-	"github.com/chu0119/pojun/intercept"
+	"github.com/backslion/RedAI/db"
+	"github.com/backslion/RedAI/intercept"
 )
 
 func TestInterceptFilterHTTP(t *testing.T) {

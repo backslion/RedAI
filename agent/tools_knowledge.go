@@ -31,8 +31,8 @@ import (
 
 	actool "github.com/Autumn-27/norma/tool"
 
-	"github.com/chu0119/pojun/db"
-	"github.com/chu0119/pojun/knowledge"
+	"github.com/backslion/RedAI/db"
+	"github.com/backslion/RedAI/knowledge"
 )
 
 // knowledgeService 按需构造知识库服务（构造是廉价的，不做缓存，避免测试里

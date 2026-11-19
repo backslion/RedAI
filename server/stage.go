@@ -10,8 +10,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/chu0119/pojun/db"
-	stagepkg "github.com/chu0119/pojun/stage"
+	"github.com/backslion/RedAI/db"
+	stagepkg "github.com/backslion/RedAI/stage"
 )
 
 // 受管文件投递（移植自 artex-ymh 的 F13；stage 包语义见 stage/stage.go 头注释）。
@@ -22,7 +22,7 @@ import (
 //  3. 管理 API（POST/GET/DELETE /api/stage*，在 JWT 之后）。
 //
 // 与上游的差异：
-//   - TaskID 用 int64（Pojun 的任务 id 本来就是整数，activity 记账可以直接用，
+//   - TaskID 用 int64（RedAI 的任务 id 本来就是整数，activity 记账可以直接用，
 //     不必再在字符串与整数之间来回转）；
 //   - 新增单条 256 MiB 上限（暂存目录在平台数据盘上，不设限等于给 agent 一个把
 //     磁盘写满的静默入口）；

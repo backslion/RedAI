@@ -14,7 +14,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/chu0119/pojun/db"
+	"github.com/backslion/RedAI/db"
 )
 
 // --- 纯函数层 ---

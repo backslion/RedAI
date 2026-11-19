@@ -1,5 +1,5 @@
 // Package agent wires real LLM-driven planner and work agents (on top of the
-// agent-core SDK) to the dual SQLite graph. See docs/POJUN-架构设计.md
+// agent-core SDK) to the dual SQLite graph. See docs/RedAI-架构设计.md
 // §4.3 (planner) and §4.4 (work agent).
 //
 // Provider configuration is read from the environment so the system runs with
@@ -25,7 +25,7 @@ import (
 	"github.com/Autumn-27/norma/llm"
 	acperm "github.com/Autumn-27/norma/permission"
 	"github.com/Autumn-27/norma/transcript"
-	"github.com/chu0119/pojun/llmrec"
+	"github.com/backslion/RedAI/llmrec"
 )
 
 // Config describes the LLM backend resolved from the environment.

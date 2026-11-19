@@ -5,7 +5,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/chu0119/pojun/db"
+	"github.com/backslion/RedAI/db"
 )
 
 // Initialize an explicitly configured fresh database before taking the same

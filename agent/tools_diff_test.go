@@ -15,7 +15,7 @@ import (
 
 	actool "github.com/Autumn-27/norma/tool"
 
-	"github.com/chu0119/pojun/intercept"
+	"github.com/backslion/RedAI/intercept"
 )
 
 // 差分的核心判据：只留**结构性**差异，滤掉噪声。
